@@ -4,12 +4,19 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "test": "NODE_ENV=test jest ./server/__tests --runInBand --detectOpenHandles"
+    "client-test": "cd ./client && npm test",
+    "server-test": "cd ./server && npm test",
+    "test": "NODE_ENV=test concurrently \"npm run server-test\" \"npm run client-test\" ",
+    "submit": "node .airci/submit.js"
   },
   "keywords": [],
   "author": "",
   "license": "ISC",
   "devDependencies": {
+    "concurrently": "^5.0.1",
     "jest": "^24.9.0"
+  },
+  "dependencies": {
+    "colors": "^1.4.0"
   }
 }
