@@ -4,9 +4,6 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "client-test": "cd ./client && npm test",
-    "server-test": "cd ./server && npm test",
-    "test": "NODE_ENV=test concurrently \"npm run server-test\" \"npm run client-test\" ",
     "submit": "node .airci/submit.js"
   },
   "keywords": [],
