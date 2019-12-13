@@ -8,6 +8,7 @@ import MovieRankList from '../src/MovieRankList';
 import CurrentMovie from '../src/CurrentMovie';
 import App from '../src/App';
 import { movies } from '../fakeData.json';
+
 global.fetch = fetch;
 
 const mockMovie = {
@@ -29,6 +30,7 @@ const mockMovie = {
   large_cover_image:
     'https://yts.lt/assets/images/movies/deadpool_2016/large-cover.jpg'
 };
+
 describe('MovieRankListEntry test', () => {
   let container;
   beforeEach(() => {
