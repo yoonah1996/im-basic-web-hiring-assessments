@@ -1,10 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import { act } from 'react-dom/test-utils'; // ES6
+import 'babel-polyfill';
+import fetch from 'node-fetch';
 import MovieRankListEntry from '../src/MovieRankListEntry';
 import MovieRankList from '../src/MovieRankList';
 import CurrentMovie from '../src/CurrentMovie';
 import App from '../src/App';
+import { movies } from '../fakeData.json';
+global.fetch = fetch;
 
 const mockMovie = {
   id: 5512,
@@ -154,19 +158,25 @@ describe('App test', () => {
     expect(mockApp.state.currentMovie).not.toEqual(undefined);
     expect(mockApp.state.movies).not.toEqual(undefined);
   });
-  test('should change currentMovie when movie card was clicked', () => {
-    const cards = container.querySelectorAll('.card');
-    const currentMovieTitle = container.querySelector('.current-movie .title')
-      .innerHTML;
-    const thirdMovie = cards[2];
-    act(() => {
-      thirdMovie.dispatchEvent(new MouseEvent('click', { bubbles: true }));
+  test('should change currentMovie when movie card was clicked', async done => {
+    jest.spyOn(global, 'fetch').mockImplementation(() =>
+      Promise.resolve({
+        json: () => Promise.resolve(movies)
+      })
+    );
+    await act(async () => {
+      ReactDOM.render(<App />, container);
     });
+    const cards = container.querySelectorAll('.card');
+    cards[2].dispatchEvent(new MouseEvent('click', { bubbles: true }));
+
     expect(container.querySelector('.current-movie .title').innerHTML).toEqual(
-      thirdMovie.querySelector('.title').innerHTML
+      movies[2].title
     );
-    expect(currentMovieTitle).not.toEqual(
+    expect(
       container.querySelector('.current-movie .title').innerHTML
-    );
+    ).not.toEqual(movies[0].title);
+
+    done();
   });
 });
