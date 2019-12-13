@@ -122,19 +122,6 @@ describe('CurrentMovie test', () => {
 });
 
 describe('App test', () => {
-  let container;
-  beforeEach(() => {
-    container = document.createElement('div');
-    document.body.appendChild(container);
-    act(() => {
-      ReactDOM.render(<App />, container);
-    });
-  });
-
-  afterEach(() => {
-    document.body.removeChild(container);
-    container = null;
-  });
   test('should be stateful component', () => {
     expect(React.Component.isPrototypeOf(App));
   });
@@ -159,6 +146,8 @@ describe('App test', () => {
     expect(mockApp.state.movies).not.toEqual(undefined);
   });
   test('should change currentMovie when movie card was clicked', async done => {
+    const container = document.createElement('div');
+    document.body.appendChild(container);
     jest.spyOn(global, 'fetch').mockImplementation(() =>
       Promise.resolve({
         json: () => Promise.resolve(movies)
