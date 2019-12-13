@@ -40,6 +40,6 @@
 
 ## Submission
 
-1. server & client 각 각 폻더에서 `npm test`로 테스트를 실행하여 각 디렉토리에서 server-result.json or client-result.json 파일이 생성된 것을 확인 하세요
+1. server & client 각 각 폴더에서 `npm test`로 테스트를 실행하여 각 디렉토리에서 server-result.json or client-result.json 파일이 생성된 것을 확인 하세요
 2. student.json 파일을 본인의 정보에 맞게 수정 합니다.
 3. npm run submit 스크립트를 통해 과제를 제출 합니다.(최신 테스트 결과를 반영하여 제출합니다. 제출 전 테스트를 꼭 돌려주세요.)
