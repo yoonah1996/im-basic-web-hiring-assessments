@@ -2,7 +2,7 @@ const https = require('https');
 require('colors');
 (() => {
   try {
-    const { theClass, student, sprint } = require('../student.json');
+    const { th, name, sprint } = require('../student.json');
     const clientResult = require('../client/client-result.json');
     const serverResult = require('../server/server-result.json');
 
@@ -21,13 +21,13 @@ require('colors');
       ].join('\n')
     );
     if (
-      theClass === '기수를 숫자만! 입력해주세요! 예)10' ||
-      isNaN(Number(theClass))
+      th === '기수를 숫자만! 입력해주세요! 예)10' ||
+      isNaN(Number(th))
     ) {
       throw new Error('기수 정보를 정확히 입력 해주세요');
     }
     if (
-      student ===
+      name ===
       '스프린트를 진행하는 수강생분의 이름을 한글로! 적어주세요! 예)존도우'
     ) {
       throw new Error('성함을 정확히 입력 해주세요');
@@ -65,8 +65,8 @@ require('colors');
       req.write(
         JSON.stringify({
           fields: {
-            class: theClass,
-            name: student,
+            class: th,
+            name: name,
             sprint: sprint,
             passed: clientResult.passed + serverResult.passed,
             failed: clientResult.failed + serverResult.failed
