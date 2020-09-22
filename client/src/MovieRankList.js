@@ -1,12 +1,18 @@
 import React from 'react';
 import MovieRankListEntry from './MovieRankListEntry';
-export default function MovieRankList() {
+export default function MovieRankList(props) {
   return (
     <div className="right-movie-list">
-      <MovieRankListEntry />
-      <MovieRankListEntry />
-      <MovieRankListEntry />
-      <MovieRankListEntry />
+      {
+        props.movies.map(el => (
+          <MovieRankListEntry 
+          key = {el.id.toString()}
+          movie = {el}
+          handleCardClick = {props.handleCardClick}
+          />
+          
+        ))
+      }
     </div>
   );
 }
